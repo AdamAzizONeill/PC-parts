@@ -1,0 +1,22 @@
+version: '3.6'
+
+services:
+  postgres:
+    image: postgres:10.4
+    container_name: postgres
+    domainname: postgres.quo.co.uk
+    hostname: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=pc_parts
+      - POSTGRES_USER=adam
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - ./postgresql:/var/lib/postgresql/data
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
